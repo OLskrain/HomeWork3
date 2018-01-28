@@ -6,7 +6,7 @@ import java.util.*;
  * Javacore 1. Homework 3.
  * @author Andrey Ievlev.
  * @version Jan 28, 2018
- * @Link
+ * @Link https://github.com/OLskrain/HomeWork3.git
  */
 
 public class HM3 {
