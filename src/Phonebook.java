@@ -1,47 +1,20 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Phonebook {
-    public class Person {
+   private HashMap<String, ArrayList<String>> book; //Ключ у нас Фамилия, а в ArrayList складываем все номера, которые встречаются под этой фамилией
 
-        private String name;
-        private String number;
-
-        public Person(String name, String number) {
-            this.name = name;
-            this.number = number;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public String getNumber() {
-            return this.number;
-        }
-        public String toString() {
-            return this.getName() + " номер: " + this.getNumber();
-        }
+     Phonebook() {            //Конструктор, в котором создаем HasMap
+       book = new HashMap<>();
     }
-
-    private ArrayList<Person> phoneBook = new ArrayList<>();
-
-    public void add(String name, String number) {
-        Person person = new Person(name, number);
-        this.phoneBook.add(person);
+    public void add(String surname, String phone){
+         if(!book.containsKey(surname)) {           //Проверяем есть ли такая фамилия, и если её нкт то создаем ArrayList
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add(phone);                   //И кладум туда телефон
+             book.put(surname, arrayList);          //В запись кладем текушую Фамилию и созданный Arraylist с номером
+        }else book.get(surname).add(phone);         //Спрашиваем у текушего имени список номеров и ложим туда же номер ещё
     }
-
-    public void printAll() {
-        for (Person person : this.phoneBook) {
-            System.out.println(person);
-        }
-    }
-
-    public String searchNumber(String name) {
-        for (Person person : this.phoneBook) {
-            if (person.getName().equals(name)) {
-                return person.getNumber();
-            }
-        }
-        return "Номер неизвестен!";
+    public ArrayList<String> get(String surname){   //метод через который мы запрашиваем имя
+        return book.get(surname);
     }
 }
